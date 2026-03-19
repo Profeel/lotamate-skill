@@ -36,6 +36,21 @@ export interface Enterprise {
     address?: string;
     logo?: string;
 }
+export interface QccEnterprise {
+    id: number;
+    company_name: string;
+    legal_rep?: string;
+    phone?: string;
+    province?: string;
+    city?: string;
+    district?: string;
+    address?: string;
+    industry?: string;
+    org_type?: string;
+    registered_capital?: string;
+    establishment_date?: string;
+    business_scope?: string;
+}
 export interface Opportunity {
     id: number;
     title: string;
@@ -135,6 +150,43 @@ export declare class LotamateSkill {
      * @param enterpriseId Enterprise ID
      */
     getSignedPartners(enterpriseId: number): Promise<PaginatedResult<any>>;
+    /**
+     * Search enterprises in QCC database (企查查)
+     * @param params Search parameters
+     */
+    searchQccEnterprises(params?: {
+        keyword?: string;
+        province?: string;
+        city?: string;
+        industry?: string;
+        page?: number;
+        limit?: number;
+    }): Promise<{
+        items: QccEnterprise[];
+        total: number;
+        pagination: PaginatedResult<any>['pagination'];
+    }>;
+    /**
+     * Get detailed QCC enterprise info by ID
+     * @param enterpriseId QCC Enterprise ID
+     */
+    getQccEnterprise(enterpriseId: number): Promise<QccEnterprise>;
+    /**
+     * List all provinces with QCC enterprises
+     */
+    listQccProvinces(): Promise<{
+        provinces: {
+            name: string;
+        }[];
+    }>;
+    /**
+     * List all industries with QCC enterprises
+     */
+    listQccIndustries(): Promise<{
+        industries: {
+            name: string;
+        }[];
+    }>;
     /**
      * List opportunities
      * @param params Filter parameters

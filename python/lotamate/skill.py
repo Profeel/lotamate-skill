@@ -132,6 +132,35 @@ class LotamateSkill:
             'enterpriseId': enterprise_id
         })
 
+    # ==================== QCC Database ====================
+
+    def search_qcc_enterprises(self, **kwargs) -> Dict:
+        """Search enterprises in QCC database (企查查)
+
+        Args:
+            keyword: Search keyword (company name or legal representative)
+            province: Province filter (e.g., 福建省)
+            city: City filter (e.g., 福州市)
+            industry: Industry filter (e.g., 食品加工)
+            page: Page number (default 1)
+            limit: Results per page (default 20)
+        """
+        return self._call_tool('lotamate_search_qcc_enterprises', kwargs)
+
+    def get_qcc_enterprise(self, enterprise_id: int) -> Dict:
+        """Get detailed enterprise info from QCC database by ID"""
+        return self._call_tool('lotamate_get_qcc_enterprise', {
+            'enterpriseId': enterprise_id
+        })
+
+    def list_qcc_provinces(self) -> Dict:
+        """List all provinces with enterprises in QCC database"""
+        return self._call_tool('lotamate_list_qcc_provinces', {})
+
+    def list_qcc_industries(self) -> Dict:
+        """List all industries with enterprises in QCC database"""
+        return self._call_tool('lotamate_list_qcc_industries', {})
+
     # ==================== Opportunities ====================
 
     def list_opportunities(self, **kwargs) -> Dict:
@@ -238,7 +267,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) < 2:
         print("Usage: python skill.py <command> [args]")
-        print("Commands: test, search_contacts, search_enterprises, list_events, get_points")
+        print("Commands: test, search_contacts, search_enterprises, search_qcc, get_qcc, list_events, get_points")
         sys.exit(1)
 
     skill = LotamateSkill()
@@ -254,6 +283,14 @@ if __name__ == '__main__':
     elif cmd == 'search_enterprises':
         keyword = sys.argv[2] if len(sys.argv) > 2 else ''
         result = skill.search_enterprises(keyword)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+    elif cmd == 'search_qcc':
+        keyword = sys.argv[2] if len(sys.argv) > 2 else ''
+        result = skill.search_qcc_enterprises(keyword=keyword)
+        print(json.dumps(result, indent=2, ensure_ascii=False))
+    elif cmd == 'get_qcc':
+        enterprise_id = int(sys.argv[2]) if len(sys.argv) > 2 else 0
+        result = skill.get_qcc_enterprise(enterprise_id)
         print(json.dumps(result, indent=2, ensure_ascii=False))
     elif cmd == 'list_events':
         result = skill.list_events()

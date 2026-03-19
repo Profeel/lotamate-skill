@@ -103,6 +103,35 @@
       "parameters": {
         "analysisType": { "type": "string", "description": "Type: network, industry, or opportunity" }
       }
+    },
+    {
+      "name": "search_qcc_enterprises",
+      "description": "Search enterprises in QCC database (企查查). Supports keyword, province, city, industry filters.",
+      "parameters": {
+        "keyword": { "type": "string", "description": "Search keyword (company name or legal representative)" },
+        "province": { "type": "string", "description": "Province filter, e.g., 福建省" },
+        "city": { "type": "string", "description": "City filter, e.g., 福州市" },
+        "industry": { "type": "string", "description": "Industry filter, e.g., 食品加工" },
+        "page": { "type": "number", "description": "Page number", "default": 1 },
+        "limit": { "type": "number", "description": "Results per page", "default": 20 }
+      }
+    },
+    {
+      "name": "get_qcc_enterprise",
+      "description": "Get detailed enterprise info from QCC database by ID",
+      "parameters": {
+        "enterpriseId": { "type": "number", "description": "Enterprise ID from QCC database" }
+      }
+    },
+    {
+      "name": "list_qcc_provinces",
+      "description": "List all provinces with enterprises in QCC database",
+      "parameters": {}
+    },
+    {
+      "name": "list_qcc_industries",
+      "description": "List all industries with enterprises in QCC database",
+      "parameters": {}
     }
   ],
   "categories": [
@@ -130,6 +159,11 @@
       "name": "ai",
       "description": "AI-powered features",
       "tools": ["recommend_partners", "analyze_contacts"]
+    },
+    {
+      "name": "qcc_database",
+      "description": "QCC Enterprise Database - Search and query enterprise data",
+      "tools": ["search_qcc_enterprises", "get_qcc_enterprise", "list_qcc_provinces", "list_qcc_industries"]
     }
   ]
 }
