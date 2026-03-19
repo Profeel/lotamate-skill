@@ -1,0 +1,9 @@
+# Source files - only dist is needed for npm
+src/
+node_modules/
+*.ts
+!*.d.ts
+tsconfig.json
+skill.json
+python/
+README.md

@@ -1,0 +1,135 @@
+{
+  "name": "lotamate",
+  "version": "1.0.0",
+  "description": "Lotamate Business Skill - Manage contacts, enterprises, opportunities, and events",
+  "author": "Lotamate Team",
+  "homepage": "https://lotamate.com",
+  "repository": "https://github.com/lotamate/lotamate-skill",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "env": {
+    "LOTAMATE_API_KEY": {
+      "description": "Your Lotamate API Key (get it from https://lotamate.com/user/mcp)",
+      "required": true
+    },
+    "LOTAMATE_API_URL": {
+      "description": "Lotamate API URL (optional, defaults to https://api.lotamate.com/mcp)",
+      "required": false
+    }
+  },
+  "tools": [
+    {
+      "name": "search_contacts",
+      "description": "Search contacts by keyword (name, company, position)",
+      "parameters": {
+        "keyword": { "type": "string", "description": "Search keyword" },
+        "limit": { "type": "number", "description": "Max results", "default": 10 }
+      }
+    },
+    {
+      "name": "get_contact",
+      "description": "Get contact details by ID",
+      "parameters": {
+        "contactId": { "type": "string", "description": "Contact ID" }
+      }
+    },
+    {
+      "name": "create_contact",
+      "description": "Create a new contact",
+      "parameters": {
+        "name": { "type": "string", "description": "Contact name (required)" },
+        "company": { "type": "string", "description": "Company name" },
+        "title": { "type": "string", "description": "Job title" },
+        "phone": { "type": "string", "description": "Phone number" },
+        "email": { "type": "string", "description": "Email address" }
+      }
+    },
+    {
+      "name": "search_enterprises",
+      "description": "Search enterprises/companies",
+      "parameters": {
+        "keyword": { "type": "string", "description": "Search keyword" },
+        "industry": { "type": "string", "description": "Industry filter" },
+        "city": { "type": "string", "description": "City filter" },
+        "limit": { "type": "number", "description": "Max results", "default": 20 }
+      }
+    },
+    {
+      "name": "get_enterprise",
+      "description": "Get enterprise details by ID",
+      "parameters": {
+        "enterpriseId": { "type": "number", "description": "Enterprise ID" }
+      }
+    },
+    {
+      "name": "list_opportunities",
+      "description": "List business opportunities",
+      "parameters": {
+        "status": { "type": "string", "description": "Filter by status" },
+        "limit": { "type": "number", "description": "Max results", "default": 20 }
+      }
+    },
+    {
+      "name": "list_events",
+      "description": "List upcoming events",
+      "parameters": {
+        "keyword": { "type": "string", "description": "Search keyword" },
+        "limit": { "type": "number", "description": "Max results", "default": 20 }
+      }
+    },
+    {
+      "name": "register_event",
+      "description": "Register for an event",
+      "parameters": {
+        "eventId": { "type": "number", "description": "Event ID" }
+      }
+    },
+    {
+      "name": "get_points",
+      "description": "Get current points balance",
+      "parameters": {}
+    },
+    {
+      "name": "recommend_partners",
+      "description": "Get AI-powered partner recommendations",
+      "parameters": {
+        "industry": { "type": "string", "description": "Target industry" },
+        "location": { "type": "string", "description": "Target location" }
+      }
+    },
+    {
+      "name": "analyze_contacts",
+      "description": "Analyze your contacts with AI insights",
+      "parameters": {
+        "analysisType": { "type": "string", "description": "Type: network, industry, or opportunity" }
+      }
+    }
+  ],
+  "categories": [
+    {
+      "name": "contacts",
+      "description": "Contact management",
+      "tools": ["search_contacts", "get_contact", "create_contact"]
+    },
+    {
+      "name": "enterprises",
+      "description": "Enterprise/company search",
+      "tools": ["search_enterprises", "get_enterprise"]
+    },
+    {
+      "name": "opportunities",
+      "description": "Business opportunities",
+      "tools": ["list_opportunities"]
+    },
+    {
+      "name": "events",
+      "description": "Events and activities",
+      "tools": ["list_events", "register_event"]
+    },
+    {
+      "name": "ai",
+      "description": "AI-powered features",
+      "tools": ["recommend_partners", "analyze_contacts"]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools>=45", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lotamate-skill"
+version = "1.0.0"
+description = "Lotamate Skill for OpenClaw - Access your Lotamate business data in AI assistants"
+readme = "README.md"
+authors = [
+    {name = "Lotamate Team", email = "support@lotamate.com"}
+]
+license = {text = "MIT"}
+license-files = ["LICENSE"]
+keywords = ["openclaw", "skill", "lotamate", "crm", "business"]
+requires-python = ">=3.7"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.7",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+]
+
+[project.urls]
+Homepage = "https://lotamate.com"
+Repository = "https://github.com/lotamate/lotamate-skill"
+Documentation = "https://docs.lotamate.com"
+
+[project.optional-dependencies]
+dev = []
+
+[project.scripts]
+lotamate-skill = "lotamate.skill:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["lotamate*"]
+
+[tool.setuptools.package-data]
+lotamate = ["py.typed"]
